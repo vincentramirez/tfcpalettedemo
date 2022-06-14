@@ -12,7 +12,7 @@
 - cd into the dir `cp-v1-0-0_run_first`
 - Make a copy of the terraform.tfvars.example file and name it `terraform.tfvars`
 - Modify the `terraform.tfvars` file by adding your palette api key to line #11
-- Run Terraform `terraform apply`
+- Run `terraform init`  then `terraform apply`
 - Verify the cluster profile is created in Palette > Default Project > Profiles 
 
 This will create the first version of the cluster profile at k8s version 1.22.7
@@ -22,7 +22,7 @@ which can be found in the file `resource_clusterprofile.tf` line #66
 - cd into the dir `cp-v1-0-1_run_second`
 - Make a copy of the terraform.tfvars.example file and name it `terraform.tfvars`
 - Modify the `terraform.tfvars` file by adding your palette api key to line #11
-- Run Terraform `terraform apply`
+- Run `terraform init`  then `terraform apply`
 - Verify the cluster profile version is created in Palette > Default Project > Profiles 
 
 This will create the second version of the cluster profile at k8s version 1.23.4
@@ -39,7 +39,7 @@ which can be found in the file `resource_clusterprofile.tf` line #66
 	- paste an ssh public key blob into line #41
 	- update the AWS region you would like to use line #45
 	- save changes to file 
-- Run Terraform `terraform apply`
+- Run `terraform init`  then `terraform apply`
 - Verify the cluster is created in Palette > Clusters creation will take ~20-30mins
 
 This will create an AWS IaaS cluster based on the Cluster Profile version 1.0.0
