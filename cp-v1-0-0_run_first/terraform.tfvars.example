@@ -8,7 +8,7 @@
 # The Spectro Cloud provider works for the SaaS offering as well as private install
 # If using a private install provide the dns name of your on-prem Palette enviroment 
 sc_host         = "api.spectrocloud.com" 
-sc_api_key      = "yourApiKey"
+sc_api_key      = "yourAPIkey"
 
 # Spectro Cloud can manage Kubernetes clusters in separate projects that help support multitenancy and RBAC
 # There is a default project named "Default" this can be used for testing and training 
