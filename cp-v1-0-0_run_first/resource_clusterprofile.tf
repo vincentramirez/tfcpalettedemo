@@ -114,7 +114,38 @@ pack {
     name   = "k8s-dashboard"
     tag    = data.spectrocloud_pack.k8sdash.version
     uid    = data.spectrocloud_pack.k8sdash.id
-    values = data.spectrocloud_pack.k8sdash.values
+    values = <<-EOT
+manifests:
+  k8s-dashboard:
+    #Ingress config
+    annotations: null
+      # kubernetes.io/cluster-name: "cluster123"
+      # kubernetes.io/version: "2.4.0"
+
+      # Additional labels to be applied to Kubernetes Dashboard deployment, pod & service
+    labels: null
+      # app.kubernetes.io/name: "kubernetes-dashboard"
+      # app.kubernetes.io/version: "2.4.0"
+
+      #Namespace to install kubernetes-dashboard
+    namespace: "kubernetes-dashboard"
+    #The ClusterRole to assign for kubernetes-dashboard. By default, a ready-only cluster role is provisioned
+    clusterRole: "k8s-dashboard-readonly"
+    #Self-Signed Certificate duration in hours
+    certDuration: 8760h #365d
+    #Self-Signed Certificate renewal in hours
+    certRenewal: 720h #30d
+    #Flag to enable skip login option on the dashboard login page
+    skipLogin: true
+    #Ingress config
+    ingress:
+      #Ingress host
+      enabled: false
+      #  - secretName: k8s-dashboard-tls
+      #    hosts:
+      #      - kubernetes-dashboard.example.com
+    serviceType: LoadBalancer
+    EOT    
   }  
 
 pack {
