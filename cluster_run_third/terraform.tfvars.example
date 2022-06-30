@@ -1,7 +1,7 @@
 # This Terraform example for Spectro Cloud Palette can be used by customizing this file
 # as well as setting some environment variables for your secrets data 
 # NEVER COMMIT files with secrets into a version control system
-
+##
 
 # Spectro Cloud credentials used to communicate with the Palette platform
 
