@@ -35,10 +35,10 @@ data "spectrocloud_registry" "registry" {
   name = "Public Repo"
 }
 
-data "spectrocloud_pack" "prismacloud" {
-  name = "prismacloud"
+data "spectrocloud_pack" "open-policy-agent" {
+  name = "open-policy-agent"
   registry_uid = data.spectrocloud_registry.registry.id
-  version  = "20.09.0"
+  version  = "3.7.0"
 }
 
 data "spectrocloud_pack" "sapp-hipster" {
@@ -128,47 +128,11 @@ pack {
   }
 
 pack {
-    name   = "prismacloud"
-    tag    = data.spectrocloud_pack.prismacloud.version
-    uid    = data.spectrocloud_pack.prismacloud.id
-    values = <<-EOT
-manifests:
-  prisma-cloud:
+    name   = "open-policy-agent"
+    tag    = data.spectrocloud_pack.open-policy-agent.version
+    uid    = data.spectrocloud_pack.open-policy-agent.id
+    values = data.spectrocloud_pack.open-policy-agent.values
 
-    # The namespace used to deploy prisma-cloud resources
-    namespace: twistlock
-
-    # Service type for Prisma Cloud Console; Supported values are ClusterIP, NodePort, and LoadBalancer
-    consoleSvcType: LoadBalancer
-
-    # The max timeout (in seconds) to wait for the Console service to be ready
-    consoleSvcTimeout: 600s
-
-    # Prisma Cloud Console service User. When left empty, admin will be the Username
-    consoleUser: ""
-
-    # Prisma Cloud Console service Password. When left empty, welcome123 will be the Password
-    consolePassword: ""
-
-    # When provided, Defender will connect to this Console address. Example: https://127.0.0.1:8083
-    externalConsoleAddr: ""
-
-    # Address that Defenders use to communicate with Prisma Cloud Console. Example: prismacloud-console.company.com
-    clusterAddr: ""
-
-    # Access token to use for downloading Console / Defender images
-    accessToken: "wgdhemeo0dlxlflyhtmeob8uo4t1ffky"
-
-    # The license key to use for Prisma Cloud Console (self-hosted)
-    licenseKey: "VuzwEtAVKvPnyK5OdDo5MtK0iBucs85yFninE4W9uro4OtjjwfRMxzsbp8VbvzhTBooZYMIooYkoPdw4kqvuKEc/e7Smfaquz31k50vRuBq1/CP7VZPMIyLpp0CTKYK5p5X0tSZdmpz+fzK2wtrlYYZZqEpeesiPM06Hc8Y3imkOGICWUAnZA93aoNw61FMYE7lR1anI4+b0LT9bnBI88USya1VAoiyc2y5mgDPNUgKo+ziddQXvv7CJi++BvTRv/hs3poPA6SQwWPdX+E0vvlfoQ6cyRz/QR5jVlHC2trMkAbXD4+fhP+4ITS0ffxv2v0/xfAWbsHOWOY+/4rDE+cH5Kc4QdpZvDxEu7+bHZtyJrTLDsbxDuKtRSOtRwwo2iI29lqi3zbSGN4MXXJMEojesYlMd7e8tWBoKjot96IcZaO43r37QY+axkAVdBVHeMRa61N5PEkEhLXO3T24M1CAC24Rdd+a8uoTwtzxN2kR84HPtFnnzq52MCcCVTQ/HYvd427AUbs/I2C4LRbBrpXhyQ00hb8A6w5awRSw3Rx/Ljla7sz0VziIpmLiPhPx6OURp2VFADjLmBqiK1uOTqCCqE33utFkyVXGlDlrBKqJWuM5G+iIHGWiWUn0DL/9oGYNSiNGVZnlt8kdFnrPYR50rO7mGPXeEFKp6AVLYixo="
-
-    # Prisma Cloud Compute Edition bits URL
-    releaseUrl: https://cdn.twistlock.com/releases/f801n066/prisma_cloud_compute_edition_20_09_365.tar.gz
-
-    # Prisma Cloud CA certificate file to use for Defender deployment
-    # Copy paste the ca cert contents
-    tlscacert: |-
-    EOT
   }
 
 pack {
